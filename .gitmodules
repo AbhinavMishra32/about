@@ -1,2 +1,7 @@
-git dev update --init --recursive
-git dailycoding update --init --recursive
+[submodule "dev"]
+    path = path/to/dev
+    url = https://github.com/username/dev.git
+
+[submodule "dailycoding"]
+    path = path/to/dailycoding
+    url = https://github.com/username/dailycoding.git
