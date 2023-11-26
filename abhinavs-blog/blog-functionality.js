@@ -1,6 +1,9 @@
+//for first time using the database:-
 credentialArray = {
-    "admin":"admin_pass"
-}
+    "default": "default_pass125"
+};
+localStorage.setItem('credentials', JSON.stringify(credentialArray));
+credentialArray = localStorage.getItem('credentials')
 
 function createUser(userID, pass){
     if(credentialArray[userID]){
@@ -10,6 +13,7 @@ function createUser(userID, pass){
         if(checkStrenth(pass)){
             credentialArray[userID] = pass;
             console.log("User created successfully");
+            localStorage.setItem('credentials', JSON.stringify(credentialArray));
         }
         else{
             console.log("User not created.");
@@ -20,7 +24,7 @@ function createUser(userID, pass){
 // Algorithm that determines if the password has a special character, 
 // numerical value, does not include the username as it is somewhere 
 // in between it, or does not have repeated values more than 3-4 digits,
-// like: 0000, 1111, 123, 1234, 123456.
+// like: 0000, 1111.
 
 function checkStrenth(pass){
     let hasInt = false;
