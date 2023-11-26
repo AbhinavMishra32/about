@@ -1,0 +1,74 @@
+.login-text{
+    font-family: monospace;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; //Adjust the height as needed */
+}
+
+.inputs {
+padding: 10px;
+width: 200px;
+border-radius: 20px;
+border-width: 2px;
+margin-bottom: 15px;
+font-family: monospace;
+font-size: 15px;
+}
+
+.login-button-css{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.login-button{
+    font-family: monospace;
+    font-size: 14px;
+    border: none;
+    background-color:rgb(243, 243, 243);
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+
+.login-button:hover{
+    background-color: rgb(230, 230, 230);
+    cursor:pointer;
+}
+
+.signup-button{
+    font-family: monospace;
+    font-size: 14px;
+    border: none;
+    background-color:rgb(243, 243, 243);
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+
+.signup-button:hover{
+    background-color: rgb(230, 230, 230);
+    cursor:pointer;
+}
+
+.login-box {
+    background-color: #f9f9f9; /* Change to your desired color */
+    /* border: 1px solid #ccc; Change to your desired border */
+    padding: 20px; /* Adjust as needed */
+    margin: 30px; /* Adjust as needed */
+    border-radius: 50px; /* Optional: to make the corners rounded */
+}

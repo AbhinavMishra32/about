@@ -25,5 +25,23 @@ shows the array of the blogs, which we can edit.
 </head>
 <body>
     <script src = "blog-functionality.js"></script>
+    <!-- 
+        Adding blog functionality:-
+        An "Add" button at the bottom of the page, where after putting the correct
+        login id and password I see a section of the page appear, where I can add new blogs from
+        this can be done with adding an extra div when I enter the correct login id and pass
+        then through that div, with the inputs fields im able to enter the fields/parameters previously thought
+        which has a date, time, headline, about, technology related too, etc. Then through those
+        fields im able to click another button "Save", and it will save the new blog into the database.
+
+        Editing blog functionality:-
+        After clicking the "Edit" button I can then choose the index number or the headline of the blog, we can implement
+        a string search algorithm which finds the headline of the blog from just a simple word we enter in the parameter 
+        of the search bar, after it finds the headline, it shows the contents of the blog in the input fields now and I can edit it,
+        after im done editing I can click "Save".
+     -->
+     <input type="text" placeholder="Enter Username" class = "inputs username-field">
+     <input type="password" class="inputs password-field" placeholder="Enter Password">
+    <button id = "edit-button">Edit Blog</button>
 </body>
 </html>
