@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming news</title>
+    <link rel="stylesheet" href="upcoming.css">
+</head>
+<body>
+    <h1>Upcoming Projects:</h1>
+    <ol>
+        <li>Blog section of the projects I'm working on!</li>
+        <li>Database based project with login functionality</li>
+    </ol>
+
+    <footer id="footer"></footer>
+
+    <script>
+        // Fetch and include footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer').innerHTML = html;
+            });
+    </script>
+
+</body>
+</html>

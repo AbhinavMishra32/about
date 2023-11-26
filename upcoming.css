@@ -1,0 +1,46 @@
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+}
+
+/* List Styles */
+ol {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+li:hover {
+    transform: translateY(-5px);
+}
+
+/* Title Style */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Numbered List Styles */
+ol {
+    counter-reset: item;
+}
+
+li::before {
+    content: counter(item);
+    counter-increment: item;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-right: 10px;
+    color: #ff6600; /* Orange color for numbers */
+}
