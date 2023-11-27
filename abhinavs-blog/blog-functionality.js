@@ -1,12 +1,7 @@
-//for first time using the database:-
-// credentialArray = {
-//     "default": "default_pass125"
-// };
-// localStorage.setItem('credentials', JSON.stringify(credentialArray));
-// let credentialArray = JSON.parse(localStorage.getItem('credentials'));
 
-// let credentialArray = JSON.parse(localStorage.getItem('credentials'));
-
+function showFormToEdit(){
+    let 
+}
 
 function createUser(userID, pass){
     let credentialArray = JSON.parse(localStorage.getItem('credentials'));
@@ -85,9 +80,6 @@ function checkStrength(pass){
 
 createUser("Abhinav", "my_passAbhinav123");
 createUser("Abhinav", "sdfds@#Ainav123");
-
-
-
 
 //Able to click edit button after entering the correct credentials
 //and after that a div apears showing the input fields to fill out the necesarry
