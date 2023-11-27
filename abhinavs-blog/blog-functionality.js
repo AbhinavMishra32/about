@@ -5,17 +5,20 @@
 // localStorage.setItem('credentials', JSON.stringify(credentialArray));
 // let credentialArray = JSON.parse(localStorage.getItem('credentials'));
 
-let credentialArray = JSON.parse(localStorage.getItem('credentials')) || {};
+// let credentialArray = JSON.parse(localStorage.getItem('credentials'));
+
 
 function createUser(userID, pass){
+    let credentialArray = JSON.parse(localStorage.getItem('credentials'));
     if(credentialArray[userID]){
         console.log("User already exists");
     }
     else{
         //checks the strength of the password
-        if(checkStrenth(pass)){
+        if(checkStrength(pass)){
             credentialArray[userID] = pass;
             console.log("User created successfully");
+            console.log(credentialArray);
             localStorage.setItem('credentials', JSON.stringify(credentialArray));
         }
         else{
@@ -23,13 +26,28 @@ function createUser(userID, pass){
         }
     }
 }
+/*
+ todo: for now the deleteUser function is in code only, will make it in UI later on... (could use prompts to get values)
+ todo: how to get value from alerts: https://stackoverflow.com/questions/51578629/how-can-i-put-an-input-in-the-alert-box 
+*/
+function deleteUser(userID, pass){
+    let credentialArray = JSON.parse(localStorage.getItem('credentials'));
+    if(credentialArray[userID] == pass){
+        delete credentialArray.userID;
+        localStorage.setItem('credentials', JSON.stringify(credentialArray));
+    }
+    else{
+        alert("Enter the correct username or password to delete your account.");
+    }
+    // document.querySelector(".password-field").value = "";
+}
 
 // Algorithm that determines if the password has a special character, 
 // numerical value, does not include the username as it is somewhere 
 // in between it, or does not have repeated values more than 3-4 digits,
 // like: 0000, 1111.
 
-function checkStrenth(pass){
+function checkStrength(pass){
     let hasInt = false;
     let hasSpclChr = false;
     let hasPattern = false;
@@ -77,6 +95,8 @@ createUser("Abhinav", "sdfds@#Ainav123");
 
 const editButton = document.getElementById('myButton');
 //sign in or edit
+//! NON FUNCTIONING
+//! takes in values from input fields. (YET TO IMPLEMENT)
 function editValidate(){
     const username = document.querySelector(".username-field").value;
     const password = document.querySelector(".password-field").value;
