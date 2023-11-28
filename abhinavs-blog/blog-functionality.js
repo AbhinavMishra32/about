@@ -7,6 +7,7 @@ function createUser(userID, pass){
     let credentialArray = JSON.parse(localStorage.getItem('credentials'));
     if(credentialArray[userID]){
         console.log("User already exists");
+        console.log(credentialArray);
     }
     else{
         //checks the strength of the password
@@ -14,6 +15,7 @@ function createUser(userID, pass){
             credentialArray[userID] = pass;
             console.log("User created successfully");
             console.log(credentialArray);
+            // console.log(credentialArray[pass]);
             localStorage.setItem('credentials', JSON.stringify(credentialArray));
         }
         else{
@@ -67,19 +69,20 @@ function checkStrength(pass){
     }
     // FOR DEBUG:
     
-    // if(!hasInt){
-    //     console.log("Password must contain a number.")
-    // }
-    // if(!hasSpclChr){
-    //     console.log("Password must contain a special character.")
-    // }
-    // if(hasPattern){
-    //     console.log("Password cannot contain repeating values.")
-    // }
+    if(!hasInt){
+        console.log("Password must contain a number.")
+    }
+    if(!hasSpclChr){
+        console.log("Password must contain a special character.")
+    }
+    if(hasPattern){
+        console.log("Password cannot contain repeating values.")
+    }
 }
 
 createUser("Abhinav", "my_passAbhinav123");
 createUser("Abhinav", "sdfds@#Ainav123");
+createUser("New_account", "sdfg#46S");
 
 //Able to click edit button after entering the correct credentials
 //and after that a div apears showing the input fields to fill out the necesarry
@@ -90,16 +93,32 @@ const editButton = document.getElementById('myButton');
 //! NON FUNCTIONING
 //! takes in values from input fields. (YET TO IMPLEMENT)
 function editValidate(){
-    const username = document.querySelector(".username-field").value;
-    const password = document.querySelector(".password-field").value;
-
-    if(credentialArray[username] == password){
+    const userID = document.querySelector(".username-field").value;
+    const pass = document.querySelector(".password-field").value;
+    let credentialArray = JSON.parse(localStorage.getItem('credentials'));
+    if(credentialArray[userID] == pass){
+        document.querySelector(".password-field").value = "";
         alert("logged in"); 
-        window.location = "login-accepted.html";
+        // window.location = "login-accepted.html";
+        return true;
     }
     else{
-        alert("wrong username or password");
+        document.querySelector(".password-field").value = "";
+        alert("Wrong Username or Password");
+        return false;
     }
-    document.querySelector(".password-field").value = "";
+    
 }
-button.addEventListener('click', editValidate);
+if(editValidate()){
+    editButton.addEventListener('click', function(){
+        const editDiv = document.createElement('div');
+        editDiv.classList.add('edit-div');
+        editDiv.innerHTML = `
+            <input type="text" class="edit-title" placeholder="Enter the title of your blog post.">
+            <input type="text" class="edit-content" placeholder="Enter the content of your blog post.">
+            <input type="text" class="edit-tags" placeholder="Enter the tags of your blog post.">
+            <button class="edit-submit">Submit</button>
+        `;
+        document.querySelector('.blog-container').appendChild(editDiv);
+    })
+}
