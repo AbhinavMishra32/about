@@ -1,7 +1,5 @@
 {
-    "liveServer.settings.port": 5501,
-    "cSpell.words": [
-        "Abhinav"
-    ],
-    "editor.inlineSuggest.showToolbar": "onHover"
+  "liveServer.settings.port": 5501,
+  "cSpell.words": ["Abhinav"],
+  "editor.inlineSuggest.showToolbar": "always"
 }

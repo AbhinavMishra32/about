@@ -47,17 +47,11 @@ shows the array of the blogs, which we can edit.
         of the search bar, after it finds the headline, it shows the contents of the blog in the input fields now and I can edit it,
         after im done editing I can click "Save".
      -->
-     <div id= "show-edit-interface">
-        <form onsubmit="handleSubmit(event)">
-            <input type="text" id = "blog-headline" placeholder="Headline">
-            <input type="text" id = "blog-content" placeholder = "Enter blog content">
-            <!-- <input type = "submit" value = "submit" onclick = "showFormToEdit();"> -->
-        </form>
-     </div>
+     
      <input type="text" placeholder="Enter Username" class = "inputs username-field">
      <input type="password" class="inputs password-field" placeholder="Enter Password">
-     <button id = 'edit-button'>Edit Blog</button>
-    <div id= 'show-add-button' onclick="showAddButton();"></div>
+     <button id = 'edit-button' onclick = 'editValidate();'>Edit Blog</button>
+    <div id= 'show-add-button'></div>
     <div id= "blog-div"></div>
 </body>
 </html>
