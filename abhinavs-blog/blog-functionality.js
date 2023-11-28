@@ -24,7 +24,7 @@ function createUser(userID, pass){
  todo: how to get value from alerts: https://stackoverflow.com/questions/51578629/how-can-i-put-an-input-in-the-alert-box 
 */
 function deleteUser(userID, pass){
-    let credentialArray = JSON.parse(localStorage.getItem('credentials'));
+    let credentialArray = JSON.parse(localStorage.getItem('credentials')) || {};
     if(credentialArray[userID] == pass){
         delete credentialArray.userID;
         localStorage.setItem('credentials', JSON.stringify(credentialArray));
@@ -118,7 +118,7 @@ function loginBlogEdit(){
     <input type="text" id = "blog-content" placeholder = "Enter blog content">`;
     document.body.appendChild(inputDiv);
     addButton.addEventListener('click', function(){
-        //put functionality to add a blog post from a js object here.
+        //todo: put functionality to add a blog post from a js object here.
         alert('add Button clicked')
     })
     document.body.appendChild(addButton);
