@@ -1,12 +1,9 @@
 
-function showFormToEdit(){
-    let 
-}
-
 function createUser(userID, pass){
     let credentialArray = JSON.parse(localStorage.getItem('credentials'));
     if(credentialArray[userID]){
         console.log("User already exists");
+        console.log(credentialArray);
     }
     else{
         //checks the strength of the password
@@ -14,6 +11,7 @@ function createUser(userID, pass){
             credentialArray[userID] = pass;
             console.log("User created successfully");
             console.log(credentialArray);
+            // console.log(credentialArray[pass]);
             localStorage.setItem('credentials', JSON.stringify(credentialArray));
         }
         else{
@@ -67,39 +65,64 @@ function checkStrength(pass){
     }
     // FOR DEBUG:
     
-    // if(!hasInt){
-    //     console.log("Password must contain a number.")
-    // }
-    // if(!hasSpclChr){
-    //     console.log("Password must contain a special character.")
-    // }
-    // if(hasPattern){
-    //     console.log("Password cannot contain repeating values.")
-    // }
+    if(!hasInt){
+        console.log("Password must contain a number.")
+    }
+    if(!hasSpclChr){
+        console.log("Password must contain a special character.")
+    }
+    if(hasPattern){
+        console.log("Password cannot contain repeating values.")
+    }
 }
 
 createUser("Abhinav", "my_passAbhinav123");
 createUser("Abhinav", "sdfds@#Ainav123");
+createUser("New_account", "sdfg#46S");
 
 //Able to click edit button after entering the correct credentials
 //and after that a div apears showing the input fields to fill out the necesarry
 //parameters of a blog post.
 
-const editButton = document.getElementById('myButton');
-//sign in or edit
-//! NON FUNCTIONING
-//! takes in values from input fields. (YET TO IMPLEMENT)
+//Sign in function.
 function editValidate(){
-    const username = document.querySelector(".username-field").value;
-    const password = document.querySelector(".password-field").value;
-
-    if(credentialArray[username] == password){
+    const userID = document.querySelector(".username-field").value;
+    const pass = document.querySelector(".password-field").value;
+    let credentialArray = JSON.parse(localStorage.getItem('credentials'));
+    if(credentialArray[userID] === pass){
         alert("logged in"); 
-        window.location = "login-accepted.html";
+        loginBlogEdit();
+        document.querySelector(".password-field").value = "";
+        document.querySelector(".username-field").value = "";
+        // window.location = "login-accepted.html";
+        return true;
     }
     else{
-        alert("wrong username or password");
+        document.querySelector(".password-field").value = "";
+        alert("Wrong Username or Password");
+        return false;
     }
-    document.querySelector(".password-field").value = "";
+    
 }
-button.addEventListener('click', editValidate);
+
+//shows an add button and other functionalities after edit button is clicked and userID and pass is correct.
+//todo: from a js object, add a blog post.
+function loginBlogEdit(){
+    var addButton = document.createElement("BUTTON");
+    addButton.innerHTML = 'Add Blog';
+    addButton.classList.add('add-button');
+
+    const inputDiv = document.createElement('div');
+    inputDiv.innerHTML = `
+    <input type="text" id = "blog-headline" placeholder="Headline">
+    <input type="text" id = "blog-content" placeholder = "Enter blog content">`;
+    document.body.appendChild(inputDiv);
+    addButton.addEventListener('click', function(){
+        //put functionality to add a blog post from a js object here.
+        alert('add Button clicked')
+    })
+    document.body.appendChild(addButton);
+}
+    
+
+
