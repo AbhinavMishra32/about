@@ -19,6 +19,14 @@ var options = {
 }
 app.use(express.static('public', options));
 
+app.get('/', (req, res) =>{
+  try {
+    res.status(200).send(req)
+  } catch (error) {
+    res.status(400).json({message: error.message});
+  }
+})
+
 
 
 
