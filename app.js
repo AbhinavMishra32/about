@@ -12,4 +12,24 @@ var options = {
 }
 app.use(express.static('public', options));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = app
