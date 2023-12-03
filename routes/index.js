@@ -1,40 +1,9 @@
 const express = require('express');
-const path = require("path");
-const app = express();
+const router = express.Router();
 
-const port = process.env.PORT || 3000
+router.get('/', (req, res) =>{
+  res.sendFile('index.html', {root: 'public'})
 
-app.use(express.static('public'));
-
-const indexRouter = require('./routes/index');
-const loginRouter = require('./routes/login');
-
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-
-
-app.listen(port, () => {
-  console.log(`App listening at ${port}`)
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = app
+module.exports = router;
