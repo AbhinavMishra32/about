@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 app.use(express.json({limit: '1mb'}));
 
-mongoose.connect('process.env.PORT')
+// mongoose.connect(process.env.API_KEY);
 
 const port = process.env.PORT || 3000
 
