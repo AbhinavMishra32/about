@@ -31,3 +31,5 @@ async function registerUser(event){
         // Handle error scenarios (e.g., display an error message to the user)
     }
     }
+
+//7 dec or 8 dec continue login and notes app.
