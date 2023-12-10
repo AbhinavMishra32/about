@@ -20,7 +20,7 @@ async function loginUser(event){
     // console.log(json);
 
     try {
-        const result = await fetch('api/login', options);
+        const result = await fetch('api/register', options);
         if (!result.ok) {
             throw new Error('Network response was not ok.');
         }
