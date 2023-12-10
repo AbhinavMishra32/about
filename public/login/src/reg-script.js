@@ -1,7 +1,7 @@
 const form = document.getElementById('reg-form');
-form.addEventListener('submit', loginUser);
+form.addEventListener('submit', registerUser);
 
-async function loginUser(event){
+async function registerUser(event){
     event.preventDefault()
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
