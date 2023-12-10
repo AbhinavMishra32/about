@@ -17,7 +17,7 @@ const uri = process.env.API_KEY;
 //PORT from environement
 const PORT = process.env.PORT || 3000
 
-//bcrypt js to hash passwords
+//bcryptjs to hash the passwords
 const bcrypt = require('bcryptjs');
 
 const JWT_SECRET = 'dsa;dsalkbdaasehowbopbweobemwmgopwf#(*&@%#@!%)KFWEIJ'
