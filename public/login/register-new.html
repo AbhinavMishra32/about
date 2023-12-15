@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+
+    <link rel="stylesheet" href="../styles/login_style.css">
+    <p class = "login-text">Register</p>
+    <!-- <input type="password" placeholder="Enter password" class ="inputs"> -->
+    <div class = "login-box" id = 'login-box'>
+        <form id = "login-form">
+        <div class="center-container">
+            <input id = 'username' type="text" placeholder="Enter Username" class = "inputs username-field">
+            <input id = 'password' type="password" class="inputs password-field" placeholder="Enter Password">
+            <p id="message"></p>
+        </div>
+        <div class = "login-button-css">
+            <input type = 'submit' class = "login-button" value = 'Proceed'>
+        </form>
+        <button class = "signup-button" onclick="makeAccountButton(event);">Make an account</button>
+        </div>
+    </div>
+    <script src="../scripts/register_script.js"></script>
+</body>
+</html>

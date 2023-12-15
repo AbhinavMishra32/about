@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+    <link rel="stylesheet" href="../styles/login_style.css">
+    <p class = "login-text">Sign in</p>
+    <!-- <input type="password" placeholder="Enter password" class ="inputs"> -->
+    <div class = "login-box" id = 'login-box'>
+        <form id = "login-form">
+            <div class="center-container">
+                <input id = 'username' type="text" placeholder="Enter Username" class = "inputs username-field">
+                <input id = 'password' type="password" class="inputs password-field" placeholder="Enter Password">
+                <p id="message"></p>
+            </div>
+            <div class = "login-button-css">
+                <input type = 'submit' class = "login-button" id = "login-button" value = 'Proceed'>
+        </form>
+            <button class = "signup-button "id = "signup-button" onclick="signUpButtonFunc(event);">Sign up</button>
+    </div>
+        
+    </div>
+    <script src="../scripts/login_script.js"></script>
+</body>
+</html>
