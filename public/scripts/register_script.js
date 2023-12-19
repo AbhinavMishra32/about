@@ -3,7 +3,7 @@ form.addEventListener('submit', loginUser);
 
 function makeAccountButton(event){
     event.preventDefault();
-    window.location.href = '/login';
+    window.location.href = '/login/';
 }
 async function loginUser(event){
     event.preventDefault();
