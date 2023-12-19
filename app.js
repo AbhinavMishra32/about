@@ -47,7 +47,7 @@ app.get('/', (req, res) =>{
 
 app.get('/register', (req, res) =>{
 // res.sendFile('public/login/login.html'); //cant work since it doesnt work with relative path. needs full path
-res.sendFile(path.join(__dirname, 'public/login/register.html'));
+res.sendFile(path.join(__dirname, 'public/login/register-new.html'));
 })
 
 app.get('/login', (req, res) =>{

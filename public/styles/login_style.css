@@ -1,10 +1,4 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
+
   /* Body styles */
   body {
     font-family: Arial, sans-serif;
@@ -18,79 +12,8 @@
     color: #333;
   }
   
-  /* Heading styles */
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333; /* Text color */
-  }
-  
-  /* Paragraph styles */
-  p {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  /* List styles */
-  ul {
-    list-style: none;
-    text-align: center;
-  }
-  
-  li {
-    margin-bottom: 8px;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #007bff; /* Or any color you prefer */
-    transition: color 0.3s ease;
-  }
-  
-  a:hover {
-    color: #0056b3; /* Hover color */
-  }
-  
-  /* Under construction text */
-  #under-construction {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition on hover */
-  }
-  
-  /* Hover effect - Scale and change color */
-  #under-construction:hover {
-    transform: scale(1.2); /* Scale up on hover */
-    color: #ff6347; /* Change color on hover */
-  }
-  
-  /* Common styles for container-like elements */
-  .container {
-    background-color: #ffffff;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 20px;
-  }
-  
-  .container:hover {
-    transform: scale(1.2);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  
+
+
   /* Login box */
   .login-box {
     background-color: #ffffff;
@@ -171,3 +94,8 @@
     text-decoration: underline;
   }
   
+#extra-login-text{
+    font-weight:bolder;
+    font-size: 16px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
