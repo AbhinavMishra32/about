@@ -66,7 +66,7 @@ a:hover {
 
 /* Hover effect - Scale and change color */
 #under-construction:hover {
-  transform: scale(1.2); /* Scale up on hover */
+  transform: scale(1.05); /* Scale up on hover */
   color: #ff6347; /* Change color on hover */
 }
 
@@ -77,22 +77,19 @@ a:hover {
   padding: 20px; /* Padding inside the box */
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Box shadow for a slight elevation effect */
   max-width: 400px; /* Adjust the maximum width as needed */
-}
-
-/* Centering the container */
-.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-
-.container:hover{
-  transform: scale(1.2);
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, color 0.3s ease;
+  
+}
+.container:hover{
+  transform: scale(1.05); 
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Navbar styles */
@@ -108,12 +105,13 @@ a:hover {
   justify-content: center;
   text-align: center;
   margin: 20px;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .navbar:hover {
-  transform: scale(1.2); /* Scale up on hover */
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05); 
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -143,13 +141,13 @@ a:hover {
 /* Existing styles... */
 
 /* Footer styles */
-#footerid {
-  background-color: #ffffff; /* Background color of the navbar */
-  border-radius: 15px; /* Rounded corners */
+/* #footerid {
+  background-color: #ffffff;
+  border-radius: 15px;
   padding: 20px;
   padding-bottom: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* Box shadow for a slight elevation effect */
-  max-width: 400px; /* Adjust the maximum width as needed */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); 
+  max-width: 400px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -158,6 +156,21 @@ a:hover {
   margin: 20px;
 }
 #footerid:hover {
-  color: #ff6347; /* Hover color */
-  text-decoration: underline; /* Underline links on hover */
+  color: #ff6347;
+  text-decoration: underline; 
+} */
+
+#footerid{
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+#footerid:hover{
+  transform: scale(1.1); /* Scale up on hover */
+  color: #ff6347; /* Change color on hover */
 }
