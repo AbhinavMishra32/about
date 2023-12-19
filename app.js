@@ -71,12 +71,17 @@ app.post('/api/register', async(req, res) =>{
     //creating user in database:
     try{
         const response = await User.create({username,password})
+        req.session.loggedIn = true;
+        req.session.username = username;
         console.log("user created successfully! " + "User data: ", response);
         res.json({status: 'OK'});
     }
     catch(err){
         if(err.code === 11000){
             res.status(409).json({message: 'This username has already been taken'});
+        }
+        else if(username ==="" || password ===""){
+            res.json({message:"Please enter the username or password"})
         }
         else{
             res.status(500).json({message: 'Something went wrong'});
@@ -103,6 +108,12 @@ app.post('/api/login', async(req, res) =>{
     }
     // res.json({status: 'Username found in database'});
 })
+
+// app.post('/api/register/accountcreated', async(req,res)=>{
+//     if(req.status ==="accountcreated"){
+        
+//     }
+// })
 
 // app.get('/dashboard', (req, res) =>{
 
