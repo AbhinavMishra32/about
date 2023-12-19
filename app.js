@@ -63,6 +63,7 @@ app.get('/dashboard', (req, res) =>{
     else{
         res.redirect('/login');
     }
+    
 })
 
 app.post('/api/register', async(req, res) =>{

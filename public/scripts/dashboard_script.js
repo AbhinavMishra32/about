@@ -1,5 +1,6 @@
-// async function fetchData(){
-//   try{
-//     const response = await fetch('/api/dashboard');
-//   }
-// }
+const logoutButt = document.getElementById('logout-button');
+logoutButt.addEventListener('click', logoutButtonFunc);
+
+function logoutButtonFunc(){
+    
+}
