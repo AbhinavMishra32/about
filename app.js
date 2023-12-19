@@ -1,114 +1,113 @@
-const express = require('express');
+const express = require("express");
+const session = require('express-session');
+const path = require('path');
 const app = express();
-const path = require("path");
-const jwt = require('jsonwebtoken');
-app.use(express.static('public'));
-app.use(express.json({limit: '1mb'}));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 require('dotenv').config();
+
+app.use(express.static('public'));
+
 const mongoose = require('mongoose');
-//Makes mongoose only work with schema database, will not work without making a schema
 mongoose.set('strictQuery', false);
 
-//User Schema
-const User = require('./model/user');
-//API key 
 const uri = process.env.API_KEY;
-//PORT from environement
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT;
 
-//bcryptjs to hash the passwords
-const bcrypt = require('bcryptjs');
-
-const JWT_SECRET = 'dsa;dsalkbdaasehowbopbweobemwmgopwf#(*&@%#@!%)KFWEIJ'
-
+const User = require('./model/user');
 
 async function start(){
-  try{
-    await mongoose.connect(uri);
-    app.listen(PORT, () => {
-      console.log("Connected to MongoDB")
-      console.log(`App listening at ${PORT}`)
-    })
-  }
-  catch(err){
-    console.log(err.message);
-  }
+    try{
+        await mongoose.connect(uri);
+        app.listen(PORT, () =>{
+            console.log("Connected to Mongo DB");
+            console.log(`App listening at ${PORT}`);
+        })
+    }
+    catch(err){
+        console.log(err.message);
+    }
 }
 
 start();
 
-const indexRouter = require('./routes/index');
-const loginRouter = require('./routes/login');
+app.use(session({
+    secret: 'abhinavmishrasecretkeyyoyoyo',
+    resave: false,
+    saveUninitialized: false
+}));
 
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-
-
-//API ENDPOINT ROUTES:-
-
-//Index route:
 app.get('/', (req, res) =>{
-  res.sendFile('index.html', {root: 'public'})
-
-})
+    res.sendFile('index.html', {root: 'public'})
+  })
 
 app.get('/register', (req, res) =>{
-  // res.sendFile('public/login/login.html');
-  res.sendFile(path.join(__dirname, 'public/login/register.html'));
+// res.sendFile('public/login/login.html'); //cant work since it doesnt work with relative path. needs full path
+res.sendFile(path.join(__dirname, 'public/login/register.html'));
 })
 
 app.get('/login', (req, res) =>{
-  // res.sendFile('public/login/login.html');
-  res.sendFile(path.join(__dirname, 'public/login/login.html'));
+// res.sendFile('public/login/login.html'); //cant work since it doesnt work with relative path. needs full path
+res.sendFile(path.join(__dirname, 'public/login/signin.html'));
 })
 
-app.post('/api/register', async (req, res)=>{
-  console.log(req.body);
-  const {username, password: plainTextPassword} = req.body; //syntax to make variables of same name in a list and make it as seperate variable
-  const password = await bcrypt.hash(plainTextPassword, 10);
-
-  try{
-      const response = await User.create({
-          username,
-          password
-      })
-      console.log("User created successfully", response);
-  }
-  catch(err){
-      if(err.code === 11000){
-          res.status(409).json({message: 'Username already exists'});
-      }
-      else{
-          res.status(500).json({message: 'Something went wrong'});
-
-  }
-}
-
-  res.json({status: 'OK'})
+app.get('/dashboard', (req, res) =>{
+    // res.sendFile(path.join(__dirname, 'public/dashboard/dashboard.html'));
+    if(req.session.loggedIn){
+        res.render('dashboard', {username: req.session.username});
+    }
+    else{
+        res.redirect('/login');
+    }
 })
 
-app.post('api/login', async (req, res) =>{
-  const {username, password} = req.body;
-  const user = await user.findOne({username}).lean();
+app.post('/api/register', async(req, res) =>{
+    console.log('This credentials server got: ' + JSON.stringify(req.body));
+    const {username, password} = req.body;
+    //creating user in database:
+    try{
+        const response = await User.create({username,password})
+        console.log("user created successfully! " + "User data: ", response);
+        res.json({status: 'OK'});
+    }
+    catch(err){
+        if(err.code === 11000){
+            res.status(409).json({message: 'This username has already been taken'});
+        }
+        else{
+            res.status(500).json({message: 'Something went wrong'});
+        }
+    }
+})
+//TODO: add login with correct routing 
+app.post('/api/login', async(req, res) =>{
+    const {username, password} = req.body;
+    const user = await User.findOne({username}).lean();
 
-  if(!user){
-    return res.json({status: 'error', error: 'Invalid username/password'})
-  }
+    if(!user){
+        return res.json({status: 'error', error: 'Invalid username/password', message: 'Please enter the correct username or password.'})
+    }
 
-  if(await bcrypt.compare(password, user.password)){
-    const token = jwt.sign({
-      id: user._id, 
-      username:user.username
-    }, JWT_SECRET)
-    return res.json({status: 'ok', error: 'password matched! user logged in'})
-  }
+    if(username === user.username && password === user.password){
+        console.log("Credentials matched");
+        // console.log('You can login now!')
+        req.session.loggedIn = true;
+        req.session.username = username;
+        console.log(req.session.username);
 
-  res.json({status: 'error', data: 'Invalid username/password'})
+        return res.json({status: 'OK',message: 'Credentials matched',});
+    }
+    // res.json({status: 'Username found in database'});
 })
 
+// app.get('/dashboard', (req, res) =>{
 
+// })
 
-
-
-
+// app.post('/api/logout', async(req, res) =>{
+    
+// });
