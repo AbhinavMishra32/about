@@ -134,5 +134,5 @@ app.post('/api/percentage', (req, res) =>{
     const timeFin = now.diff(startDate, 'second');
 
     const percentage = (timeFin/timeLength)*100;
-    return res.json({currentDate : now.format('YYYY-MM-DD'), timeDiff: timeLength, timeFin: timeFin, percentageTime: percentage})
+    return res.json({percentageTime: percentage})
 })

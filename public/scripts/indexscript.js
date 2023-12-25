@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
         const data = await result.json();
         const {percentageTime} = data;
-        console.log(data);  
-        document.getElementById('percentage').innerHTML = percentageTime;
+        const roundedValue = percentageTime.toFixed(2   ); 
+        // console.log(data);  
+        document.getElementById('percentage').innerHTML = roundedValue;
     }
     catch(error){
         console.error('Error: ',error);
