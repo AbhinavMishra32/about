@@ -31,36 +31,11 @@
     </ul>
   </div>
   <script src = "scripts/indexscript.js"></script>
-  <script src = "word-change.js"></script>
+  <!-- <script src = "word-change.js"></script> -->
   
   <footer id="footerid"></footer>
   <p id= "footerid" style="margin-top: -10px;"><span id="percentage" ></span>% into my Computer Science degree</p>
   <p id="under-construction">Website in beta</p>
-  <script>
-    // Fetch and include footer
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('footerid').innerHTML = html;
-        });
-    async function getDate(event){
-      
-    }
-    const reponse = fetch('/api/percentage',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    const json = response.json();
-    document.getElementById('percentage').innerHTML = json;
-    // fetch('header.html')
-    //     .then(response => response.text())
-    //     .then(html => {
-    //         document.getElementById('header').innerHTML = html;
-    //     });
-</script>
 </body>
 </html>
 <!-- END: abpxx6d04wxr -->
