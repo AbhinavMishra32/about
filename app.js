@@ -1,6 +1,8 @@
 const express = require("express");
 const session = require('express-session');
 const path = require('path');
+const dayjs = require('dayjs');
+
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -123,3 +125,8 @@ app.post('/api/login', async(req, res) =>{
 // app.post('/api/logout', async(req, res) =>{
     
 // });
+
+app.post('/api/percentage', (req, res) =>{
+    const now = dayjs();
+    return res.json({percentageValue : now.format('YYYY-MM-DD')})
+})
