@@ -128,5 +128,11 @@ app.post('/api/login', async(req, res) =>{
 
 app.post('/api/percentage', (req, res) =>{
     const now = dayjs();
-    return res.json({percentageValue : now.format('YYYY-MM-DD')})
+    const targetDate = dayjs('2027-09-01');
+    const startDate = dayjs('2023-10-09');
+    const timeLength = targetDate.diff(startDate, 'second');
+    const timeFin = now.diff(startDate, 'second');
+
+    const percentage = (timeFin/timeLength)*100;
+    return res.json({currentDate : now.format('YYYY-MM-DD'), timeDiff: timeLength, timeFin: timeFin, percentageTime: percentage})
 })

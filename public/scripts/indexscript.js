@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', async (event) => {
         });
 
         const data = await result.json();
-        console.log(data);
-        document.getElementById('percentage').innerHTML = data;
+        const {percentageTime} = data;
+        console.log(data);  
+        document.getElementById('percentage').innerHTML = percentageTime;
     }
     catch(error){
         console.error('Error: ',error);
