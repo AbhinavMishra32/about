@@ -136,3 +136,5 @@ app.post('/api/percentage', (req, res) =>{
     const percentage = (timeFin/timeLength)*100;
     return res.json({percentageTime: percentage})
 })
+
+//aws commit
