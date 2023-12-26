@@ -12,7 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 
 require("dotenv").config();
 
-app.use('/public', express.static('public'));
+// app.use('/public', express.static('public'));
+app.use(express.static("public"));
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
