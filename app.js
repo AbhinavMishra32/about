@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 require("dotenv").config();
 
-app.use(express.static("public"));
+app.use('/public', express.static('public'));
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
@@ -111,14 +111,16 @@ app.post("/api/login", async (req, res) => {
   }
   // res.json({status: 'Username found in database'});
 });
+app.post('/api/logout', async(req, res) =>{
+  req.session.destroy(err => {
+    if(err){
+      return res.status(500).send("Error logging out");
+    }
 
-// app.get('/dashboard', (req, res) =>{
+    res.send({status: 'OK'});
+  })
 
-// })
-
-// app.post('/api/logout', async(req, res) =>{
-
-// });
+});
 
 app.post("/api/percentage", (req, res) => {
   const now = dayjs();
