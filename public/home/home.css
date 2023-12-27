@@ -1,0 +1,38 @@
+/* Styles for the provided navbar */
+#navbar {
+    background-color: #ffffff; /* Background color of the navbar */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding inside the navbar */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* Box shadow for a slight elevation effect */
+    max-width: 400px; /* Adjust the maximum width as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+    transition: transform 0.3s ease, color 0.3s ease;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  #navbar:hover{
+    transform: scale(1.05); 
+    
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #navbar li {
+    margin: 0 10px;
+  }
+  
+  #navbar li a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+  }
+  
+  #navbar li a:hover {
+    color: #0056b3;
+  }
+  

@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 require("dotenv").config();
 
+// app.use('/public', express.static('public'));
 app.use(express.static("public"));
 
 const mongoose = require("mongoose");
@@ -111,14 +112,16 @@ app.post("/api/login", async (req, res) => {
   }
   // res.json({status: 'Username found in database'});
 });
+app.post('/api/logout', async(req, res) =>{
+  req.session.destroy(err => {
+    if(err){
+      return res.status(500).send("Error logging out");
+    }
 
-// app.get('/dashboard', (req, res) =>{
+    res.send({status: 'OK'});
+  })
 
-// })
-
-// app.post('/api/logout', async(req, res) =>{
-
-// });
+});
 
 app.post("/api/percentage", (req, res) => {
   const now = dayjs();
@@ -127,6 +130,6 @@ app.post("/api/percentage", (req, res) => {
   const timeLength = targetDate.diff(startDate, "second");
   const timeFin = now.diff(startDate, "second");
 
-  const percentage = (timeFin / timeLength) * 100;
-  return res.json({ percentageTime: percentage });
-});
+    const percentage = (timeFin/timeLength)*100;
+    return res.json({percentageTime: percentage})
+})
