@@ -31,3 +31,18 @@ input[type="text"] {
 #blog-body:focus {
   border-color: #007bff; /* Border color on focus */
 }
+
+#submit-blog-button{
+  background-color: #007bff; /* Button color */
+  color: #fff; /* Text color */
+  padding: 10px 20px; /* Padding */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor on hover */
+  font-size: 1rem; /* Font size */
+  transition: background-color 0.3s ease; /* Transition effect */
+}
+
+#submit-blog-button:hover{
+  background-color: #0056b3;
+}

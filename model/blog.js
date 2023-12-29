@@ -12,4 +12,8 @@ const BlogPostSchema = mongoose.Schema({
     comments: [CommentSchema],
     date: {type: Date, default: Date.now},
     tags: [String]
-});
+},{collection: 'users'});
+
+const model = mongoose.model('BlogSchema', BlogSchema);
+
+module.exports = model;

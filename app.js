@@ -81,6 +81,13 @@ app.get("/blog", (req, res) => {
   }
 });
 
+app.post("/api/addblog", async (req, res) =>{
+  console.log(req.body);
+  const { title, author, body } = req.body;
+  const response = await Blog.create({title, author, body});
+})
+//TODO: add more parameters to req from client side, and remove author for admin blogs, and then try to put this into mongodb
+
 app.post("/api/register", async (req, res) => {
   console.log("This credentials server got: " + JSON.stringify(req.body));
   const { username, password } = req.body;
