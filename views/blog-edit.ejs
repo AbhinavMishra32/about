@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../public/styles/blog_edit_style.css">
+    <!-- css and js files r not a relative path from the file, but using filepath 
+        that is inside public folder as express will understand that only -->
+    <link rel="stylesheet" href="/styles/blog_edit_style.css">
 </head>
 <body>
-    <h1>Blog edit view</h1>
+    <h1>Add a blog</h1>
 
     <input type="text" id = "blog-title-input" placeholder="Enter Blog Title">
     <input type="text" id = "blog-author-input" placeholder = "Enter Author">
-    <input type="text" id = "blog-body" placeholder = "Blog body">
+    <textarea id="blog-body" placeholder="Blog body"></textarea>
 
-    <script src="../public/scripts/blog_script.js"></script>
+
+    <h1>Edit a blog</h1>
+    <input type="text" id = "search-title-input" placeholder="Enter Blog Title">
+    <script src="/scripts/blog_script.js"></script>
 </body>
 </html>

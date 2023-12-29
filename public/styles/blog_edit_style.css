@@ -1,5 +1,33 @@
-#blog-title-input,
-#blog-author-input,
-#blog-body {
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  color: #333;
+}
+
+input[type="text"] {
   display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#blog-body {
+  width: 100%; /* Full width */
+  height: 200px; /* Set height */
+  padding: 10px; /* Inner padding */
+  font-size: 1rem; /* Font size */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Border */
+  transition: border-color 0.3s ease; /* Smooth transition on focus */
+}
+
+#blog-body:focus {
+  border-color: #007bff; /* Border color on focus */
 }
