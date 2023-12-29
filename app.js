@@ -69,13 +69,16 @@ app.get("/dashboard", (req, res) => {
 });
 
 app.get("/blog", (req, res) => {
+  // blog edit
   if (req.session.username === "Abhinav") {
     const { title, author, body } = req.body;
-    res.render("blog", { username: req.session.username,  });
+    res.render("blog-edit", { username: req.session.username, title: title, author: author, body: body});
   } 
-  // else {
-  //   res.redirect("/GuestBlog");
-  // }
+  else {
+    //public blog view(ejs) or html
+    //render public view blogs
+    res.render("blog");
+  }
 });
 
 app.post("/api/register", async (req, res) => {
@@ -112,6 +115,7 @@ app.post("/api/login", async (req, res) => {
   }
   else if (username === user.username && password === user.password) {
     console.log("Credentials matched");
+    //check admin access
     if(username ==="Abhinav"){
       console.log("Admin logged in...");
       req.session.loggedIn = true;
