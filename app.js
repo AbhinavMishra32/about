@@ -68,6 +68,16 @@ app.get("/dashboard", (req, res) => {
   }
 });
 
+app.get("/blog", (req, res) => {
+  if (req.session.username === "Abhinav") {
+    const { title, author, body } = req.body;
+    res.render("blog", { username: req.session.username,  });
+  } 
+  // else {
+  //   res.redirect("/GuestBlog");
+  // }
+});
+
 app.post("/api/register", async (req, res) => {
   console.log("This credentials server got: " + JSON.stringify(req.body));
   const { username, password } = req.body;
@@ -88,7 +98,7 @@ app.post("/api/register", async (req, res) => {
     }
   }
 });
-//TODO: add login with correct routing
+
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username }).lean();
@@ -100,9 +110,15 @@ app.post("/api/login", async (req, res) => {
       message: "Please enter the correct username or password.",
     });
   }
-
-  if (username === user.username && password === user.password) {
+  else if (username === user.username && password === user.password) {
     console.log("Credentials matched");
+    if(username ==="Abhinav"){
+      console.log("Admin logged in...");
+      req.session.loggedIn = true;
+      req.session.username = username;
+      console.log(req.session.username);
+      return res.json({status: "OK", message: "Credentials matched", adminAcc: "true"});
+    }
     // console.log('You can login now!')
     req.session.loggedIn = true;
     req.session.username = username;

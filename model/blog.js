@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const CommentSchema = mongoose.Schema({
     body: String, 
     date: Date 
-})
+});
 
 const BlogPostSchema = mongoose.Schema({
     title: String, 
