@@ -22,6 +22,7 @@ const uri = process.env.API_KEY;
 const PORT = process.env.PORT;
 
 const User = require("./model/user");
+const Blog = require("./model/blog");
 
 async function start() {
   try {
@@ -68,27 +69,56 @@ app.get("/dashboard", (req, res) => {
   }
 });
 
+app.get('/api/session', (req, res) => {
+  if (req.session.loggedIn) {
+    res.json({ loggedIn: true, username: req.session.username });
+  } else {
+    res.json({ loggedIn: false });
+  }
+});
+
 app.get("/blog", (req, res) => {
   // blog edit
   if (req.session.username === "Abhinav") {
     const { title, author, body } = req.body;
     res.render("blog-edit", {
       username: req.session.username,
-      title: title,
-      author: author,
-      body: body,
+      // title: title,
+      // author: author,
+      // body: body,
     });
   } else {
     //public blog view(ejs) or html
     //render public view blogs
-    res.render("blog");
+    if(req.session.loggedIn){
+      res.render("blog", {loggedIn: true, username: req.session.username} );
+    }
+    else{
+      res.render("blog",{loggedIn: false});
+    }
   }
 });
 
 app.post("/api/addblog", async (req, res) => {
-  console.log(req.body);
-  const { title, author, body } = req.body;
-  const response = await Blog.create({ title, author, body });
+  // console.log(req.body);
+  const { blogTitle: title, blogAuthor: author, blogBody: body } = req.body;
+  try{
+    if(title === "" || author === "" || body === ""){
+      res.json({status: "BAD", message: "Enter all fields for creating a blog" })
+      console.log("Can't add the blog, enter all fields for creating a blog.")
+    }
+    else{
+      const response = await Blog.create({ title, author, body });
+      res.json({ status: "OK", message: "Blog added successfully!" });
+      console.log(response);
+      console.log("Blog added successfully!");
+    }
+  }
+  catch(err){
+  if (err.code === 11000){
+      console.log("Blog already exists with that information!")
+    }
+  }
 });
 //TODO: 1. add more parameters to req from client side, and remove author for admin blogs, and then try to put this into mongodb
 //TODO: 2. make a search bar which searches for the blog title and author and displays the blog
