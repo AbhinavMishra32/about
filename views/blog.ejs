@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog / Abhinav Mishra</title>
+    <title>Blogs / Abhinav Mishra</title>
+    <link rel="stylesheet" href="styles/blog_styles.css">
 </head>
 <body>
+    <h1 id = "greeting-h1"></h1>
+
+    <% blogs.forEach(function(blog) { %>
+        <div class="blog-post">
+            <h2><%= blog.title %></h2>
+            <h3>By <%= blog.author %></h3>
+            <p><%= blog.body %></p>
+        </div>
+    <% }); %>
+
+    <script src="/scripts/blog_script.js"></script>
 </body>
 </html>

@@ -1,24 +1,18 @@
-
-document.getElementById('submit-blog-button').addEventListener('click', uploadBlog);
-
-
-//TODO: add more parameters to the blog and send it to the server, then add it to the mongodb database.
-async function uploadBlog(){
-    const blogTitle = document.getElementById('blog-title-input').value;
-    const blogAuthor = document.getElementById('blog-author-input').value;
-    const blogBody = document.getElementById('blog-body').value;
-    const blogData = {blogTitle, blogAuthor, blogBody};
-    // console.log(blogData);
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(blogData)
-    }
+async function updateGreetings() {
     try {
-        const result = await fetch('/api/addblog', options);
+      const response = await fetch('/api/session');
+      const data = await response.json();
+  
+      const titleElement = document.getElementById('greeting-h1'); // Replace 'title' with the id of your title element
+  
+      if (data.loggedIn) {
+        titleElement.textContent = `Welcome ${data.username}!`;
+      } else {
+        titleElement.textContent = 'Hello guest! log in to create your own blogs!';
+      }
     } catch (error) {
-        console.log(error);
+      console.error('Error:', error);
     }
-}
+  }
+
+updateGreetings();

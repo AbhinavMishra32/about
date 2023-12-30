@@ -77,26 +77,34 @@ app.get('/api/session', (req, res) => {
   }
 });
 
-app.get("/blog", (req, res) => {
+app.get("/blog", async (req, res) => {
   // blog edit
-  if (req.session.username === "Abhinav") {
-    const { title, author, body } = req.body;
-    res.render("blog-edit", {
-      username: req.session.username,
-      // title: title,
-      // author: author,
-      // body: body,
-    });
-  } else {
-    //public blog view(ejs) or html
-    //render public view blogs
-    if(req.session.loggedIn){
-      res.render("blog", {loggedIn: true, username: req.session.username} );
-    }
-    else{
-      res.render("blog",{loggedIn: false});
+  try{
+    if (req.session.username === "Abhinav") {
+      const { title, author, body } = req.body;
+      res.render("blog-edit", {
+        username: req.session.username,
+        // title: title,
+        // author: author,
+        // body: body,
+      });
+    } else {
+      //public blog view(ejs) or html
+      //render public view blogs
+      const blogs = await Blog.find({});
+      if(req.session.loggedIn){
+        res.render("blog", {loggedIn: true, username: req.session.username, blogs: blogs});
+      }
+      else{
+        res.render("blog",{loggedIn: false, blogs: blogs});
+      }
     }
   }
+  catch(err){
+    console.log(err);
+    res.status(500).send('Server error');
+  }
+  
 });
 
 app.post("/api/addblog", async (req, res) => {
