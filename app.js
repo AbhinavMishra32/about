@@ -72,21 +72,26 @@ app.get("/blog", (req, res) => {
   // blog edit
   if (req.session.username === "Abhinav") {
     const { title, author, body } = req.body;
-    res.render("blog-edit", { username: req.session.username, title: title, author: author, body: body});
-  } 
-  else {
+    res.render("blog-edit", {
+      username: req.session.username,
+      title: title,
+      author: author,
+      body: body,
+    });
+  } else {
     //public blog view(ejs) or html
     //render public view blogs
     res.render("blog");
   }
 });
 
-app.post("/api/addblog", async (req, res) =>{
+app.post("/api/addblog", async (req, res) => {
   console.log(req.body);
   const { title, author, body } = req.body;
-  const response = await Blog.create({title, author, body});
-})
-//TODO: add more parameters to req from client side, and remove author for admin blogs, and then try to put this into mongodb
+  const response = await Blog.create({ title, author, body });
+});
+//TODO: 1. add more parameters to req from client side, and remove author for admin blogs, and then try to put this into mongodb
+//TODO: 2. make a search bar which searches for the blog title and author and displays the blog
 
 app.post("/api/register", async (req, res) => {
   console.log("This credentials server got: " + JSON.stringify(req.body));
@@ -119,16 +124,19 @@ app.post("/api/login", async (req, res) => {
       error: "Invalid username/password",
       message: "Please enter the correct username or password.",
     });
-  }
-  else if (username === user.username && password === user.password) {
+  } else if (username === user.username && password === user.password) {
     console.log("Credentials matched");
     //check admin access
-    if(username ==="Abhinav"){
+    if (username === "Abhinav") {
       console.log("Admin logged in...");
       req.session.loggedIn = true;
       req.session.username = username;
       console.log(req.session.username);
-      return res.json({status: "OK", message: "Credentials matched", adminAcc: "true"});
+      return res.json({
+        status: "OK",
+        message: "Credentials matched",
+        adminAcc: "true",
+      });
     }
     // console.log('You can login now!')
     req.session.loggedIn = true;
@@ -139,15 +147,14 @@ app.post("/api/login", async (req, res) => {
   }
   // res.json({status: 'Username found in database'});
 });
-app.post('/api/logout', async(req, res) =>{
-  req.session.destroy(err => {
-    if(err){
+app.post("/api/logout", async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
       return res.status(500).send("Error logging out");
     }
 
-    res.send({status: 'OK'});
-  })
-
+    res.send({ status: "OK" });
+  });
 });
 
 app.post("/api/percentage", (req, res) => {
@@ -157,6 +164,6 @@ app.post("/api/percentage", (req, res) => {
   const timeLength = targetDate.diff(startDate, "second");
   const timeFin = now.diff(startDate, "second");
 
-    const percentage = (timeFin/timeLength)*100;
-    return res.json({percentageTime: percentage})
-})
+  const percentage = (timeFin / timeLength) * 100;
+  return res.json({ percentageTime: percentage });
+});
