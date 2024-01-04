@@ -22,6 +22,7 @@ const uri = process.env.API_KEY;
 const PORT = process.env.PORT;
 
 const User = require("./model/user");
+const listUserRepos = require("./github-integration");
 
 async function start() {
   try {
@@ -167,3 +168,8 @@ app.post("/api/percentage", (req, res) => {
   const percentage = (timeFin / timeLength) * 100;
   return res.json({ percentageTime: percentage });
 });
+
+
+// GITHUB INTEGRATION
+
+console.log(listUserRepos("AbhinavMishra32"))
