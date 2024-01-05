@@ -3,6 +3,8 @@ const session = require("express-session");
 const path = require("path");
 const dayjs = require("dayjs");
 
+const listUserRepos = require("./github-integration");
+
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -15,6 +17,7 @@ require("dotenv").config();
 // app.use('/public', express.static('public'));
 app.use(express.static("public"));
 
+
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
@@ -23,6 +26,7 @@ const PORT = process.env.PORT;
 
 const User = require("./model/user");
 const Blog = require("./model/blog");
+
 
 async function start() {
   try {
@@ -205,3 +209,8 @@ app.post("/api/percentage", (req, res) => {
   const percentage = (timeFin / timeLength) * 100;
   return res.json({ percentageTime: percentage });
 });
+
+
+// GITHUB INTEGRATION
+
+console.log(listUserRepos("AbhinavMishra32"))
