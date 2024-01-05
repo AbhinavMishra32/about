@@ -44,16 +44,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 				let h3 = document.createElement("h3");
 				h3.className = "repo-name";
 				h3.innerHTML = repo.name;
-				let p = document.createElement("p");
-				p.className = "repo-description";
-				p.innerHTML = repo.description;
-				let a = document.createElement("a");
-				a.className = "repo-url";
-				a.href = repo.url;
-				a.innerHTML = repo.url;
 				div.appendChild(h3);
-				div.appendChild(p);
-				div.appendChild(a);
 				document.querySelector(".container").appendChild(div);
 			}
 		}
