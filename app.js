@@ -26,6 +26,8 @@ const PORT = process.env.PORT;
 
 const User = require("./model/user");
 const Blog = require("./model/blog");
+const { reset } = require("nodemon");
+const { cache } = require("ejs");
 
 
 async function start() {
@@ -217,14 +219,24 @@ app.post("/api/percentage", (req, res) => {
 // 	console.log(repos);
 // });
 
-app.post("/api/github-repos", async (req, res) => {
-	listUserRepos("AbhinavMishra32").then((repos) => {
-		try {
-			console.log(repos)
-			return res.status(200).send(repos);
-		} catch (error) {
-			console.error(error);
-		}
+let cachedRepoData = {};
 
-	});
+async function updateRepoData() {
+	try {
+		const repos = await listUserRepos("AbhinavMishra32");
+		cachedRepoData = { ...repos };
+		console.log("Cached data: " + cachedRepoData);
+	}
+	catch (error) {
+		console.error(error);
+	}
+}
+updateRepoData().then(() => {
+	console.log("Updated repo data!");
+});
+
+setInterval(updateRepoData, 60 * 60 * 1000);
+
+app.post("/api/github-repos", async (req, res) => {
+	return res.status(200).send(cachedRepoData);
 })

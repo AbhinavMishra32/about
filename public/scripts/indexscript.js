@@ -24,6 +24,7 @@ fetch("footer.html")
 
 document.addEventListener("DOMContentLoaded", async (event) => {
 
+
 	try {
 
 		const response = await fetch("/api/github-repos", {
@@ -33,19 +34,21 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 			},
 		});
 		const data = await response.json();
-		// const { repos } = data;
-		// console.log(data)
-
 		if (data) {
 			let reposArray = Object.values(data);
 			for (let repo of reposArray) {
 				let div = document.createElement("div");
-				div.className = "repo-div";
+				div.className = 'container';
+				div.textContent = repo.name;
+				document.querySelector(".container").appendChild(div);
+
+				let repoDiv = document.createElement("div");
+				repoDiv.className = "repo-div";
 				let h3 = document.createElement("h3");
 				h3.className = "repo-name";
 				h3.innerHTML = repo.name;
-				div.appendChild(h3);
-				document.querySelector(".container").appendChild(div);
+				repoDiv.appendChild(h3);
+				div.appendChild(repoDiv);
 			}
 		}
 	}
